@@ -2,7 +2,7 @@
 import { Loader } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 import { useAuthStore } from '@/store/authStore'
 import { useRouter } from 'next/navigation'
 import Input from '@/components/Layouts/Input'
@@ -16,7 +16,13 @@ const page = () => {
 
     const router = useRouter();
 
-    const {login, isLoading, error} = useAuthStore();
+    const {login, isLoading, error, isAuthenticated} = useAuthStore();
+
+    useEffect(()=>{
+      if(isAuthenticated){
+        router.push("/");
+      }
+    },[isAuthenticated,router])
 
     const handelSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

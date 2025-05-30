@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
-import { ChevronRight } from "lucide-react";
 
 type ButtonShineProps = {
     text: string;
@@ -28,10 +27,6 @@ export function AnimatedGradientTextDemo({ text, className }: ButtonShineProps) 
           text
         }
       </AnimatedGradientText>
-      <ChevronRight
-        className="ml-1 size-4 stroke-neutral-500 transition-transform
- duration-300 ease-in-out group-hover:translate-x-0.5"
-      />
     </div>
   );
 }

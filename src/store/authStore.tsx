@@ -34,6 +34,7 @@ type AuthState={
     logout:()=>Promise<void>;
     forgotpassword:(data:{email:string})=>Promise<void>;
     resetpassword:(data:{password:string,token:string})=>Promise<void>;
+    checkAuth:()=>Promise<void>;
    
     
 }
@@ -59,7 +60,6 @@ export const useAuthStore=create<AuthState>((set, get) => ({
             throw new Error(msg);
         }
     },
-
     verifyEmail: async({code})=>{
     set({isLoading:true,error:null,isAuthenticated:false})
     try {
@@ -74,7 +74,6 @@ export const useAuthStore=create<AuthState>((set, get) => ({
       throw new Error(msg); // throw so that frontend can catch
     }
     },
-
     login: async({email,password})=>{
         set({isLoading:true,error:null,isAuthenticated:false})
         try {
@@ -93,13 +92,13 @@ export const useAuthStore=create<AuthState>((set, get) => ({
     logout: async()=>{
         set({isLoading:true,error:null,isAuthenticated:false})
         try {
-            const response = await axios.get(`${API_URL}/api/auth/logout`)
+            const response = await axios.post(`${API_URL}/api/auth/logout`)
             set({user:null, isAuthenticated:false, isLoading:false})
             return response.data
         } catch (error: any) {
           const msg =error?.response?.data?.message || "Logout failed"; 
           set({ error: msg, isLoading: false });
-          throw new Error(msg); // throw so that frontend can catch
+          Error(msg); // throw so that frontend can catch
         }
     },
 
@@ -124,12 +123,25 @@ export const useAuthStore=create<AuthState>((set, get) => ({
             const response = await axios.post(`${API_URL}/api/auth/reset-password/${token}`,{
                 password,
             })
-            set({user:response.data.user, isAuthenticated:true, isLoading:false})
+            set({user:response.data.user, isAuthenticated:false, isLoading:false})
             return response.data
         } catch (error: any) {
           const msg =error?.response?.data?.message || "resetPassword failed"; 
           set({ error: msg, isLoading: false });
           throw new Error(msg); // throw so that frontend can catch
+        }
+    },
+
+    checkAuth: async()=>{
+        set({isCheckingAuth:true})
+        try {
+            const response = await axios.get(`${API_URL}/api/auth/check-auth`)
+            set({user:response.data.user, isAuthenticated:true, isCheckingAuth:false})
+            return response.data
+        } catch (error: any) {
+          const msg =error?.response?.data?.message || "checkAuth failed"; 
+          set({ error: msg, isCheckingAuth: false });
+          Error(msg);
         }
     },
 }))

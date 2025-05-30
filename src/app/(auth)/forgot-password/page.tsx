@@ -2,10 +2,11 @@
 import { Loader } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useAuthStore } from '@/store/authStore'
 import Input from '@/components/Layouts/Input'
 import { Mail} from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 
 const page = () => {
@@ -13,8 +14,16 @@ const page = () => {
     const [email, setEmail] = useState("");
     const [submited, setSubmitting] = useState(false);
 
-    const {forgotpassword, isLoading, error} = useAuthStore();
+    const router = useRouter();
 
+    const {forgotpassword, isLoading, error,isAuthenticated} = useAuthStore();
+
+    useEffect(()=>{
+      if(isAuthenticated){
+        router.push("/");
+      }
+    },[isAuthenticated,router])
+    
     const handelSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try { 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Josefin_Sans,Poppins } from 'next/font/google';
 import Navbar from "@/components/Nav/Navbar";
+import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
 
 const Josefin = Josefin_Sans({
@@ -33,8 +34,10 @@ export default function RootLayout({
         className={`${Josefin.variable} ${poppins.variable} antialiased`}
         cz-shortcut-listen="true"
       >
+        <AuthProvider>
         <Navbar/>
         {children}
+        </AuthProvider>
       </body>
     </html>
   );

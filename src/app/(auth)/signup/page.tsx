@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 
@@ -33,7 +33,13 @@ const page = () => {
 
     const router = useRouter();
 
-    const {signup, verifyEmail, isLoading, error} = useAuthStore();
+    const {signup, verifyEmail, isLoading, error,isAuthenticated} = useAuthStore();
+
+    useEffect(()=>{
+      if(isAuthenticated){
+        router.push("/");
+      }
+    },[isAuthenticated,router])
 
     const handelSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
