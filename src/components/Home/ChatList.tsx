@@ -4,7 +4,7 @@ import FollowUser from './FollowUser'
 const ChatList = () => {
   return (
     <div className='w-full overflow-hidden'>
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
             <FollowUser/>
             <FollowUser/>
             <FollowUser/>

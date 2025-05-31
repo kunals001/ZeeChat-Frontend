@@ -56,8 +56,8 @@ const Sidebar = () => {
 
   return (
     
-    <div className="md:w-[4vw] md:h-[calc(100vh-7vw)] w-full h-[6vh] bg-[#0d0d0ddf] md:rounded-l-lg flex flex-col items-center justify-between py-[1vh]">
-      <div className="flex flex-col gap-[.2vh]">
+    <div className={`md:w-[4vw] md:h-[calc(100vh-7vw)] bg-[#0d0d0ddf] md:rounded-l-lg md:flex flex-col items-center justify-between md:py-[1vh] relative hidden `}>
+      <div className="flex md:flex-col md:gap-[.2vh] flex-row gap-[5vh]">
         {items.map((item) => {
           const isSelected = currentTab === item.tab;
 
@@ -67,7 +67,7 @@ const Sidebar = () => {
               onClick={() => router.push(`/?tab=${item.tab}`)}
               className={`md:p-[.5vw] md:rounded-lg cursor-pointer hover:bg-zinc-800 transition-all duration-300 ${
                 isSelected ? "bg-zinc-800" : ""
-              }`}
+              } `}
             >
               {isSelected ? item.filledIcon : item.outlineIcon}
             </div>
@@ -75,7 +75,7 @@ const Sidebar = () => {
         })}
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="items-center justify-center hidden md:flex">
         <Link href="/?tab=profile">
           {typeof user?.profilePic === "string" && user.profilePic.trim() !== "" ? (
           <Image

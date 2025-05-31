@@ -87,9 +87,9 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: UploadProps) => {
 
   return (
     <div className="relative md:w-[8vw] md:h-[8vw] w-[5vh] h-[5vh] ">
-      <label className="cursor-pointer flex flex-col items-center justify-center gap-2 text-zinc-100 md:mt-9">
+      <label className="cursor-pointer text-[1.5vh] md:text-[.9vw] flex flex-col items-center justify-center gap-2 text-zinc-100 md:mt-9 mb-5">
         <CameraIcon className="md:size-9 text-zinc-100" />
-        Upload image
+        Upload
         <input
           type="file"
           ref={fileInputRef}

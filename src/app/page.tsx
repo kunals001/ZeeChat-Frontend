@@ -3,6 +3,8 @@ import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import MainNavigation from "@/components/Home/MainNavigation";
+import { Sidebar } from "lucide-react";
+import MobileBottomBar from "@/components/Home/MobileBottomBar";
 
 
 const page = () => {
@@ -21,8 +23,10 @@ const page = () => {
 }, [isAuthenticated, router]);
 
   return (
-    <div className="w-full md:h-[calcu(100vh-4vw)] h-[calcu(100vh-6vh)] md:flex md:px-[3vw] px-[1vh]">
+    <div className="relative w-full md:h-[calcu(100vh-4vw)] h-[calcu(100vh-6vh)] md:flex md:px-[3vw]">
       <MainNavigation/>
+
+      <MobileBottomBar/>
     </div>
   )
 }

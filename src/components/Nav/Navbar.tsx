@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <header className=' w-full md:h-[4vw] md:px-[3vw] h-[6vh] px-[1vh] flex items-center justify-between '>
         <div className="logo">
-            <Link href="/"><h1 className='md:text-[2vw] text-[3.3vh] font-prime text-transparent bg-clip-text bg-gradient-to-r from-prime to-second font-bold md:pt-4 pt-3 select-none'>ZeeChat</h1></Link>
+            <Link href="/?tab=chats"><h1 className='md:text-[2vw] text-[3.3vh] font-prime text-transparent bg-clip-text bg-gradient-to-r from-prime to-second font-bold md:pt-4 pt-3 select-none'>ZeeChat</h1></Link>
         </div>
 
         <div className="flex items-center gap-[1vh] md:gap-[1.5vw]">

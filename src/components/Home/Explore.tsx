@@ -2,9 +2,9 @@ import React from 'react'
 
 const Explore = () => {
   return (
-    <div className='md:w-[30vw] md:h-[calc(100vh-7vw)] text-white bg-[#181818f5]'>
-      <div className="w-full md:p-[1vw] text-zinc-200  flex items-center justify-between">
-        <h2 className='md:text-[1.5vw] font-prime font-semibold select-none'>Explore</h2>
+     <div className='md:w-[30vw] md:h-[calc(100vh-7vw)] w-full h-[calc(100vh-6vh)] text-white bg-[#181818f5]'>
+      <div className="w-full md:p-[1vw] text-zinc-200 p-2 flex items-center justify-between">
+        <h2 className='md:text-[1.5vw] text-[3vh] font-prime font-semibold select-none'>Explore</h2>
       </div>
     </div>
   )

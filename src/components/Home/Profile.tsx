@@ -47,21 +47,21 @@ const Profile = () => {
  }
 
   return (
-    <div className='md:w-[30vw] md:h-[calc(100vh-7vw)] text-white bg-[#181818f5]'>
-      <div className="w-full md:p-[1vw] text-zinc-200 flex items-center justify-between">
-        <h2 className='md:text-[1.5vw] font-second font-semibold select-none'>Hello, {user?.fullName}</h2>
+    <div className='md:w-[30vw] md:h-[calc(100vh-7vw)] text-white bg-[#181818f5]  w-full h-[calc(100vh-6vh)] overflow-y-scroll hide-scrollbar'>
+      <div className="w-full md:p-[1vw] p-[2vh] text-zinc-200 flex items-center justify-between">
+        <h2 className='md:text-[1.5vw] text-[3vh] font-second font-semibold select-none'>Profile</h2>
 
-        <button onClick={handelLogout} className='md:text-[1vw] text-zinc-100 md:px-[1vh] md:py-[.4vh] md:rounded-lg bg-red-400 cursor-pointer font-semibold disabled:opacity-50 flex gap-1 items-center'>Logout <LogOut className='md:size-4'/></button>
+        <button onClick={handelLogout} className='md:text-[1vw] text-zinc-100 md:px-[1vh] md:py-[.4vh] px-[1vh] py-[.5vh] rounded-md md:rounded-lg bg-red-400 cursor-pointer font-semibold disabled:opacity-50 flex gap-1 items-center'>Logout <LogOut className='md:size-4 size-4'/></button>
       </div>
 
-      <div className="relative rounded-full md:w-[8vw] md:h-[8vw] w-[5vh] h-[5vh] flex items-center justify-center mx-auto overflow-hidden">
+      <div className="relative rounded-full md:w-[8vw] md:h-[8vw] w-[12vh] h-[12vh] flex items-center justify-center mx-auto overflow-hidden">
         {typeof user?.profilePic === "string" && user.profilePic.trim() !== "" ? (
           <Image
               width={100}
               height={100}
               src={user.profilePic}
               alt="user profile"
-              className="md:w-[8vw] md:h-[8vw] w-[5vh] h-[5vh] rounded-full object-cover border-2 border-prime cursor-pointer relative"
+              className="md:w-[8vw] md:h-[8vw] w-[12vh] h-[12vh] rounded-full object-cover border-2 border-prime cursor-pointer relative"
             />
           ) : null}
 
@@ -72,7 +72,7 @@ const Profile = () => {
           )}
       </div>
 
-       <form onSubmit={updateProfile} className="md:px-[1vw] md:mt-[1.5vw] flex flex-col md:gap-[1.5vh]">
+       <form onSubmit={updateProfile} className="md:px-[1vw] px-[2vh] md:mt-[1.5vw] flex flex-col md:gap-[1.5vh]">
        <label className='md:text-[.9vw] text-prime md:leading-1.5'>Full Name</label>
       <input
         type="text"
@@ -80,7 +80,7 @@ const Profile = () => {
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
         disabled={!isEditing}
-        className="w-full md:h-[3vh] h-[3vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
+        className="w-full md:h-[3vh] h-[5vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
       />
 
       <label className='md:text-[.9vw] text-prime md:leading-1.5'>User Name</label>
@@ -90,7 +90,7 @@ const Profile = () => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
         disabled={!isEditing}
-        className="w-full md:h-[3vh] h-[3vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
+        className="w-full md:h-[3vh] h-[5vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
       />
 
       <label className='md:text-[.9vw] text-prime md:leading-1.5'>Bio</label>
@@ -99,14 +99,14 @@ const Profile = () => {
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         disabled={!isEditing}
-        className="w-full md:h-[6vw] h-[3vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none resize-none disabled:opacity-50"
+        className="w-full md:h-[6vw] h-[8vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none resize-none disabled:opacity-50"
       />
 
-      <div className="flex items-center justify-between md:mt-1">
+      <div className="flex items-center justify-between md:mt-1 mt-4">
         <button
           type="button"
           onClick={() => setIsEditing(true)}
-          className="md:text-[1vw] font-semibold text-zinc-100 md:px-[1vh] md:py-[.4vh] md:rounded-lg bg-zinc-700 cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out"
+          className="md:text-[1vw] text-[2vh] p-1.5 rounded-md font-semibold text-zinc-100 md:px-[1vh] md:py-[.4vh] md:rounded-lg bg-zinc-700 cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out"
         >
           Edit Profile
         </button>
@@ -114,7 +114,7 @@ const Profile = () => {
         <button
           type="submit"
           disabled={!isEditing}
-          className="md:text-[1vw] text-zinc-100 md:px-[1vh] md:py-[.4vh] md:rounded-lg bg-gradient-to-l from-prime to-second cursor-pointer focus:ring-2 ring-prime font-semibold disabled:opacity-50"
+          className="md:text-[1vw] text-[2vh] rounded-md p-1.5 text-zinc-100 md:px-[1vh] md:py-[.4vh] md:rounded-lg bg-gradient-to-l from-prime to-second cursor-pointer focus:ring-2 ring-prime font-semibold disabled:opacity-50"
         >
           Save Profile
         </button>
