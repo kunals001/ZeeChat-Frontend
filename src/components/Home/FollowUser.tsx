@@ -7,7 +7,7 @@ const FollowUser = () => {
    <div className="friend w-full md:px-[1vh] flex md:gap-[.9vw] px-[1.3vh] cursor-pointer hover:bg-zinc-800 transition-all duration-100 gap-[1vh]">
                 {/* Image container with padding */}
                 <div className="flex items-center justify-center md:p-2 p-1">
-                  <div className="relative md:w-[3.2vw] md:h-[3.2vw] w-[6vh] h-[6vh] rounded-full overflow-hidden border-2 border-prime">
+                  <div className="relative md:w-[3.2vw] md:h-[3.2vw] w-[6vh] h-[6vh] rounded-full overflow-hidden ">
                     <Image 
                       src="/theme.webp" 
                       alt="user profile" 

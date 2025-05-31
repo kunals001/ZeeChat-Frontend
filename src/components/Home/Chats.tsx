@@ -23,7 +23,9 @@ const Chats = () => {
         </div>
       </div>
 
+      <div className="">
       <ChatList/>
+      </div>
     </div>
   )
 }

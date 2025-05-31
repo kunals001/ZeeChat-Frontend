@@ -61,7 +61,7 @@ const Profile = () => {
               height={100}
               src={user.profilePic}
               alt="user profile"
-              className="md:w-[8vw] md:h-[8vw] w-[12vh] h-[12vh] rounded-full object-cover border-2 border-prime cursor-pointer relative"
+              className="md:w-[8vw] md:h-[8vw] w-[12vh] h-[12vh] rounded-full object-cover cursor-pointer relative"
             />
           ) : null}
 
@@ -73,7 +73,7 @@ const Profile = () => {
       </div>
 
        <form onSubmit={updateProfile} className="md:px-[1vw] px-[2vh] md:mt-[1.5vw] flex flex-col md:gap-[1.5vh]">
-       <label className='md:text-[.9vw] text-prime md:leading-1.5'>Full Name</label>
+       <label className='md:text-[.9vw] text-zinc-300 md:leading-1.5'>Full Name</label>
       <input
         type="text"
         placeholder={user?.fullName}
@@ -83,7 +83,7 @@ const Profile = () => {
         className="w-full md:h-[3vh] h-[5vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
       />
 
-      <label className='md:text-[.9vw] text-prime md:leading-1.5'>User Name</label>
+      <label className='md:text-[.9vw] text-zinc-300 md:leading-1.5'>User Name</label>
       <input
         type="text"
         placeholder={user?.userName}
@@ -93,7 +93,7 @@ const Profile = () => {
         className="w-full md:h-[3vh] h-[5vh] md:p-[1vw] p-[1vh] rounded-lg bg-zinc-800 text-zinc-200 outline-none disabled:opacity-50"
       />
 
-      <label className='md:text-[.9vw] text-prime md:leading-1.5'>Bio</label>
+      <label className='md:text-[.9vw] text-zinc-300 md:leading-1.5'>Bio</label>
       <textarea
         placeholder={user?.bio}
         value={bio}
