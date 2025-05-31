@@ -55,6 +55,7 @@ const Sidebar = () => {
   ];
 
   return (
+    
     <div className="md:w-[4vw] md:h-[calc(100vh-7vw)] w-full h-[6vh] bg-[#0d0d0ddf] md:rounded-l-lg flex flex-col items-center justify-between py-[1vh]">
       <div className="flex flex-col gap-[.2vh]">
         {items.map((item) => {
