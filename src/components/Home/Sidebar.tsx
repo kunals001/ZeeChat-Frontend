@@ -5,6 +5,7 @@ import {
   IconCompassFilled,
   IconMessage,
   IconMessageFilled,
+  IconUsersGroup
 } from "@tabler/icons-react";
 import  Link  from "next/link";
 import Image from "next/image";
@@ -35,6 +36,15 @@ const Sidebar = () => {
     },
     {
       tab: "groups",
+      filledIcon: (
+        <IconUsersGroup stroke={3} className="text-zinc-200 md:size-7" />
+      ),
+      outlineIcon: (
+        <IconUsersGroup stroke={2} className="text-zinc-200 md:size-7" />
+      ),
+    },
+    {
+      tab: "explore",
       filledIcon: (
         <IconCompassFilled className="text-zinc-200 md:size-7" />
       ),

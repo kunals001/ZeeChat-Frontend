@@ -10,7 +10,7 @@ import {
 } from "@imagekit/next";
 import { useRef} from "react";
 import Image from "next/image";
-import {UploadIcon } from "lucide-react";
+import { CameraIcon } from "lucide-react";
 
 interface UploadProps {
   coverImg: string;
@@ -29,7 +29,7 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: UploadProps) => {
     token: string;
     publicKey: string;
   }> => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/upload-auth`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_KEY_3}/upload-auth`);
     const data = res.data;
 
     const { signature, expire, token, publicKey } = data;
@@ -64,7 +64,7 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: UploadProps) => {
            setCoverImg(uploadedURL);
 
            if (onUploadComplete) {
-             onUploadComplete(uploadedURL);  // ✅ Now this is guaranteed to be string
+             onUploadComplete(uploadedURL);  
            }
          } else {
            console.error("Upload response URL is undefined");
@@ -86,10 +86,10 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: UploadProps) => {
   };
 
   return (
-    <div>
-      <label className="bg-prime hover:bg-second text-white font-bold md:p-2 p-3 rounded-lg cursor-pointer inline-block absolute bottom-0">
-        <UploadIcon className="md:size-7 size-6" />
-
+    <div className="relative md:w-[8vw] md:h-[8vw] w-[5vh] h-[5vh] ">
+      <label className="cursor-pointer flex flex-col items-center justify-center gap-2 text-zinc-100 md:mt-9">
+        <CameraIcon className="md:size-9 text-zinc-100" />
+        Upload image
         <input
           type="file"
           ref={fileInputRef}
@@ -100,9 +100,14 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: UploadProps) => {
 
 
       {coverImg && (
-        <div className="mt-4">
-          {coverImg.match(/\.(jpeg|jpg|png|gif)$/) ? (
-            <Image width={400} height={400} src={coverImg} alt="Preview" className="mt-2 w-48 h-auto rounded" loading="eager"/>
+        <div className="absolute top-0 h-full w-full z-10">
+          {/* <p className="text-sm invisible">Uploaded File URL:</p>
+          <a href={coverImg} target="_blank" className="text-blue-600 underline invisible">
+            {coverImg}
+          </a> */}
+
+          {coverImg.match(/\.(jpeg|jpg|png|gif|webp)$/) ? (
+            <Image width={400} height={400} src={coverImg} alt="Preview" className="h-full w-full rounded-full object-cover" loading="lazy"/>
           ) : coverImg.match(/\.(mp4|webm)$/) ? (
             <video controls className="mt-2 w-48 h-auto rounded">
               <source src={coverImg} type="video/mp4" />

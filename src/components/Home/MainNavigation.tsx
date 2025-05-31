@@ -7,6 +7,7 @@ import Status from './Status';
 import {useSearchParams } from 'next/navigation';
 import Message from './Message';
 import Profile from './Profile';
+import Explore from './Explore';
 
 const MainNavigation = () => {
 
@@ -32,6 +33,7 @@ const MainNavigation = () => {
           {tab === "groups" && <Groups />}
           {tab === "status" && <Status />}
           {tab === "profile" && <Profile />}
+          {tab === "explore" && <Explore />}
         </div>
 
         <div className="">

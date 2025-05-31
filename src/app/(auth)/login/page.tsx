@@ -16,11 +16,11 @@ const page = () => {
 
     const router = useRouter();
 
-    const {login, isLoading, error, isAuthenticated} = useAuthStore();
+    const {login, isLoading, error, isAuthenticated,checkAuth} = useAuthStore();
 
     useEffect(()=>{
       if(isAuthenticated){
-        router.push("/");
+        router.push("/?tab=chats");
       }
     },[isAuthenticated,router])
 
@@ -28,7 +28,8 @@ const page = () => {
         e.preventDefault();
         try { 
             await login({email, password});
-            router.push("/");
+            checkAuth();
+            router.push("/?tab=chats");
         } catch (error) {
             
         }
@@ -46,6 +47,8 @@ const page = () => {
               <Input type="email" placeholder="Your Email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} icon={Mail}/>
 
               <Input type="password" placeholder="Enter Password" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} icon={Lock}/>
+
+              <Link href={"/forgot-password"}><p className="md:text-[.8vw] text-[1vh] text-zinc-500 cursor-pointer hover:underline mt-1">Forgot password?</p></Link>
 
               {error && (
                 <p className='md:text-[1vw] text-[1.5vh] text-red-600 font-semibold mt-2'>{error}</p>

@@ -3,6 +3,7 @@ import { Josefin_Sans,Poppins } from 'next/font/google';
 import Navbar from "@/components/Nav/Navbar";
 import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const Josefin = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
         <AuthProvider>
         <Navbar/>
         {children}
+        <Toaster position="top-center"/>
         </AuthProvider>
       </body>
     </html>

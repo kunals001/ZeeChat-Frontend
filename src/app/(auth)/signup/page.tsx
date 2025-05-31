@@ -33,11 +33,11 @@ const page = () => {
 
     const router = useRouter();
 
-    const {signup, verifyEmail, isLoading, error,isAuthenticated} = useAuthStore();
+    const {signup, verifyEmail, isLoading, error,isAuthenticated,checkAuth} = useAuthStore();
 
     useEffect(()=>{
       if(isAuthenticated){
-        router.push("/");
+         router.push("/?tab=chats");
       }
     },[isAuthenticated,router])
 
@@ -57,9 +57,10 @@ const page = () => {
       e.preventDefault();
       try { 
         await verifyEmail({code});
-        router.push("/");
+        checkAuth();
+        router.push("/?tab=chats");
       } catch (error) {
-        
+        console.log("error",error);
       }
     }
 
@@ -91,7 +92,6 @@ const page = () => {
                 </SelectContent>
               </Select>
 
-              <Link href={"/forgot-password"}><p className="md:text-[.8vw] text-[1vh] text-zinc-500 cursor-pointer hover:underline mt-1">Forgot password?</p></Link>
 
               {error && (
                 <p className='md:text-[1vw] text-[1.5vh] text-red-600 font-semibold mt-2'>{error}</p>

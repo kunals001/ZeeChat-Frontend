@@ -10,10 +10,16 @@ export type User={
     userName: string;
     email: string;
     gender: string;
+    bio: string;
     fullName: string;
     profilePic: string | Blob | undefined;   
     createdAt: string;
     updatedAt: string;
+}
+
+interface UpdateUserResponse {
+  success?: boolean;
+  message?: string;
 }
 
 type AuthState={
@@ -35,6 +41,7 @@ type AuthState={
     forgotpassword:(data:{email:string})=>Promise<void>;
     resetpassword:(data:{password:string,token:string})=>Promise<void>;
     checkAuth:()=>Promise<void>;
+    updateUser:(data:{profilePic:Blob | string,bio:string,fullName:string,userName:string})=>Promise<void | UpdateUserResponse>;
    
     
 }
@@ -144,4 +151,22 @@ export const useAuthStore=create<AuthState>((set, get) => ({
           Error(msg);
         }
     },
+
+    updateUser: async({profilePic,bio,fullName,userName})=>{
+        set({isLoading:true,error:null,isAuthenticated:true})
+        try {
+            const response = await axios.put(`${API_URL}/api/user/update-profile`,{
+                profilePic,
+                bio,
+                fullName,
+                userName
+            })
+            set({user:response.data.user, isAuthenticated:true, isLoading:false})
+            return response.data
+        } catch (error: any) {
+          const msg =error?.response?.data?.message || "updateUser failed"; 
+          set({ error: msg, isLoading: false });
+          Error(msg);
+        }
+    }
 }))

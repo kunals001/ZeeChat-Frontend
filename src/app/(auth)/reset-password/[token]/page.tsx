@@ -21,7 +21,7 @@ const page = () => {
 
     useEffect(()=>{
       if(isAuthenticated){
-          router.push("/");
+          router.push("/?tab=chats");
         }
     },[isAuthenticated,router])
 

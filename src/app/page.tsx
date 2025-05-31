@@ -11,11 +11,14 @@ const page = () => {
 
   const router = useRouter();
 
-  useEffect(()=>{
-    if(!isAuthenticated){
+ useEffect(() => {
+  if (!isAuthenticated) {
+    const timer = setTimeout(() => {
       router.push("/login");
-    }
-  },[isAuthenticated,router])
+    }, 2000);
+    return () => clearTimeout(timer);
+  }
+}, [isAuthenticated, router]);
 
   return (
     <div className="w-full md:h-[calcu(100vh-4vw)] h-[calcu(100vh-6vh)] md:flex md:px-[3vw] px-[1vh]">
