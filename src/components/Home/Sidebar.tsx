@@ -9,11 +9,14 @@ import {
 import  Link  from "next/link";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
 
 const Sidebar = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentTab = searchParams.get("tab") || "chats";
+
+  const {user} = useAuthStore();
 
   const items = [
     {
@@ -42,7 +45,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="md:w-[4vw] md:h-[calc(100vh-4vw)] w-full h-[6vh] bg-[#0d0d0ddf] md:rounded-l-lg flex flex-col items-center justify-between py-[1vh]">
+    <div className="md:w-[4vw] md:h-[calc(100vh-7vw)] w-full h-[6vh] bg-[#0d0d0ddf] md:rounded-l-lg flex flex-col items-center justify-between py-[1vh]">
       <div className="flex flex-col gap-[.2vh]">
         {items.map((item) => {
           const isSelected = currentTab === item.tab;
@@ -61,8 +64,18 @@ const Sidebar = () => {
         })}
       </div>
 
-      <div  className="flex items-center justify-center">
-        <Link href="/?tab=profile"><Image width={100} height={100} src="/next.svg" alt="user profile" className='md:w-[2.5vw] md:h-[2.5vw] w-[4vh] h-[4vh] rounded-full object-cover border-2 border-prime cursor-pointer'/></Link>
+      <div className="flex items-center justify-center">
+        <Link href="/?tab=profile">
+          {typeof user?.profilePic === "string" && user.profilePic.trim() !== "" ? (
+          <Image
+              width={100}
+              height={100}
+              src={user.profilePic}
+              alt="user profile"
+              className="md:w-[2.5vw] md:h-[2.5vw] w-[4vh] h-[4vh] rounded-full object-cover border-2 border-prime cursor-pointer"
+            />
+          ) : null}
+        </Link>
       </div>
     </div>
   );
