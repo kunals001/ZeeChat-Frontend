@@ -4,18 +4,28 @@ import axios from 'axios'
 axios.defaults.withCredentials = true;
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export type User = {
+  _id: string;
+  fullName: string;
+  userName: string;
+  email: string;
+  password?: string; 
+  gender: "male" | "female" | "other";
+  profilePic?: string | Blob;
+  bio?: string;
+  followers: string[]; // ObjectId as strings
+  following: string[];
+  followRequests: string[];
+  verifyToken?: string;
+  verifyTokenExpiry?: string;
+  isVerified: boolean;
+  resetPasswordToken?: string;
+  resetPasswordTokenExpiry?: string;
+  isOnline: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
 
-export type User={
-    _id: string;
-    userName: string;
-    email: string;
-    gender: string;
-    bio: string;
-    fullName: string;
-    profilePic: string | Blob | undefined;   
-    createdAt: string;
-    updatedAt: string;
-}
 
 interface UpdateUserResponse {
   success?: boolean;

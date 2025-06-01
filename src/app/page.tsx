@@ -3,7 +3,6 @@ import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import MainNavigation from "@/components/Home/MainNavigation";
-import { Sidebar } from "lucide-react";
 import MobileBottomBar from "@/components/Home/MobileBottomBar";
 
 

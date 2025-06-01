@@ -1,15 +1,27 @@
 "use client"
 import Link from 'next/link'
-import React from 'react'
 import { AnimatedGradientTextDemo } from '../Layouts/ButtonShine'
-import { Bell } from 'lucide-react';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import NavMessage  from './NavMessage';
 import { IconBell } from '@tabler/icons-react';
+import axios from 'axios';
+import type{ User } from '@/store/authStore';
 
 const Navbar = () => {
-
+    const API_URL_3 = process.env.NEXT_PUBLIC_API_KEY_3 
     const [selected, setSelected] = useState(false);
+    const [followRequests, setFollowRequests] = useState<User[]>([]);
+
+    useEffect(() => {
+      const fetchFollowRequests = async () => {
+        const { data } = await axios.get(`${API_URL_3}/follow-requests`);
+        setFollowRequests(data.followRequests); 
+      };
+
+      if(selected)fetchFollowRequests();
+    }, [selected, API_URL_3]);
+
+
 
   return (
     <header className=' w-full md:h-[4vw] md:px-[3vw] h-[6vh] px-[1vh] flex items-center justify-between '>
@@ -27,11 +39,13 @@ const Navbar = () => {
             <div className="notification relative">
                 <div className="relative p-2 bg-zinc-900 rounded-full">
                     <IconBell onClick={() => setSelected(!selected)} className={`md:size-7 size-6 transition-all duration-200 ${selected ? "text-white bg-zinc-800" : "text-zinc-400"} cursor-pointer`}/>
-                    <div className='absolute top-0 right-0 bg-second  rounded-full md:p-2 p-1.5 flex items-center justify-center mb-[1vh] '/> 
+                    {followRequests.length > 0 && ( <div className='absolute top-0 right-0 bg-second  rounded-full md:p-2 p-1.5 flex items-center justify-center mb-[1vh] '/> )}    
+                   
                 </div>
 
                 <div className={`md:w-[18vw] md:h-[22vw] w-[27vh] h-[30vh] absolute md:top-[3vw] top-[5vh] right-0 bg-zinc-900 rounded-md transition-all duration-300 ease-in-out overflow-y-scroll hide-scrollbar transform  z-20 ${selected ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-20"} md:p-2 p-1`}>
-                    <NavMessage/>
+
+                    <NavMessage followRequests={followRequests} setFollowRequests={setFollowRequests}/>
                 </div>
             </div>
         </div>
